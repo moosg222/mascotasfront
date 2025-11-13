@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.10.1/lottie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body class="bg-gray-100">
+    <!-- Barra superior -->
+    <header
+      class="bg-blue-600 text-white flex justify-between items-center p-4 shadow-md"
+    >
+      <h1 class="text-xl font-bold">Gestión de Mascotas</h1>
+      <div id="containeravatar">
+        <div
+          id="avatarLottie"
+          class="cursor-pointer w-10 h-10 flex items-center justify-center"
+          onclick='togglePerfil("perfilModal")'
+        ></div>
+      </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="p-6 flex justify-center">
+      <button
+        class="bg-blue-600 text-white px-6 py-3 rounded shadow hover:bg-blue-700 transition"
+        onclick="location.href='/CRUDmascotas'"
+      >
+        CRUD Mascotas
+      </button>
+    </main>
+
+    <!-- Modal Ver Perfil -->
+    <div
+      id="perfilModal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden"
+    >
+      <div
+        class="bg-white rounded-lg shadow-xl w-full max-w-md p-6 relative transform transition-all scale-95 opacity-0"
+      >
+        <!-- Botón Cerrar (X) -->
+        <button
+          onclick="togglePerfil('perfilModal')"
+          class="absolute top-6 right-7 text-gray-500 hover:text-gray-700 text-xl font-bold"
+          aria-label="Cerrar"
+        >
+          ×
+        </button>
+
+        <!-- Título -->
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">
+          Mi Perfil
+        </h2>
+
+        <!-- Información del usuario -->
+        <div class="space-y-2 mb-6 text-gray-700">
+          <p>
+            <span class="font-medium">Nombre:</span>
+            <span id="perfilNombre" class="ml-1">Usuario</span>
+          </p>
+          <p>
+            <span class="font-medium">Email:</span>
+            <span id="perfilEmail" class="ml-1">correo@ejemplo.com</span>
+          </p>
+          <p>
+            <span class="font-medium">Teléfono:</span>
+            <span id="perfilTelefono" class="ml-1">0000000</span>
+          </p>
+        </div>
+
+        <!-- Botones principales lado a lado -->
+        <div class="grid grid-cols-2 gap-3 mb-4">
+          <button
+            onclick="abrirActualizarPerfil()"
+            class="bg-green-500 text-white py-2 rounded hover:bg-green-600 transition"
+          >
+            Actualizar
+          </button>
+
+          <button
+            onclick="eliminarPerfil()"
+            class="bg-red-500 text-white py-2 rounded hover:bg-red-600 transition"
+          >
+            Eliminar
+          </button>
+        </div>
+
+        <!-- Botón cerrar sesión (abajo completo) -->
+        <button
+          onclick="cerrarSesion()"
+          class="w-full bg-yellow-500 text-white py-2 rounded hover:bg-yellow-600 transition"
+        >
+          Cerrar sesión
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal Actualizar Perfil -->
+    <div
+      id="actualizarModal"
+      class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden"
+    >
+      <div
+        class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md transform transition-transform scale-90 opacity-0 space-y-4"
+      >
+        <h2 class="text-2xl font-bold mb-2">Actualizar Perfil</h2>
+
+        <input
+          type="text"
+          id="nuevoNombre"
+          placeholder="Nuevo nombre"
+          class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <input
+          type="email"
+          id="nuevoEmail"
+          placeholder="Nuevo email"
+          class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <input
+          type="text"
+          id="nuevoTelefono"
+          placeholder="Nuevo teléfono"
+          class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <!-- Contraseña actual -->
+        <div class="mb-4">
+          <div class="relative mt-1">
+            <input
+              type="password"
+              id="passwordActual"
+              placeholder="Ingresa tu contraseña actual"
+              class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            />
+
+            <!-- Ícono Lucide -->
+            <button
+              type="button"
+              id="togglePasswordActual"
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 transition"
+            >
+              <svg
+                id="iconActualEye"
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-eye"
+              >
+                <path d="M2 12S5 5 12 5s10 7 10 7-3 7-10 7S2 12 2 12Z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Nueva contraseña -->
+        <div class="mb-4">
+          <div class="relative mt-1">
+            <input
+              type="password"
+              id="nuevaPassword"
+              placeholder="Ingresa tu nueva contraseña"
+              class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            />
+
+            <button
+              type="button"
+              id="togglePasswordNueva"
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 transition"
+            >
+              <svg
+                id="iconNuevaEye"
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-eye"
+              >
+                <path d="M2 12S5 5 12 5s10 7 10 7-3 7-10 7S2 12 2 12Z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <button
+            class="bg-green-500 text-white p-2 rounded hover:bg-green-600 transition"
+            onclick="actualizarPerfil()"
+          >
+            Guardar Cambios
+          </button>
+          <button
+            class="bg-gray-300 text-gray-700 p-2 rounded hover:bg-gray-400 transition"
+            onclick="togglePerfil('actualizarModal')"
+          >
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/home.js"></script>
+    <script>
+      // Función para abrir/cerrar modales con animación
+      function togglePerfil(modalId) {
+        const modal = document.getElementById(modalId);
+        const content = modal.querySelector(".transform");
+        if (modal.classList.contains("hidden")) {
+          modal.classList.remove("hidden");
+          // Animación de apertura
+          setTimeout(() => {
+            content.classList.remove("scale-90", "opacity-0");
+            content.classList.add("scale-100", "opacity-100");
+          }, 10);
+        } else {
+          // Animación de cierre
+          content.classList.remove("scale-100", "opacity-100");
+          content.classList.add("scale-90", "opacity-0");
+          setTimeout(() => {
+            modal.classList.add("hidden");
+          }, 200);
+        }
+      }
+    </script>
+  </body>
+</html>

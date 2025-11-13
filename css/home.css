@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #f4f4f4;
+  color: #333;
+}
+
+/* Barra superior */
+.topbar {
+  background: #333;
+  color: white;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  margin: 0;
+  font-size: 20px;
+}
+
+.user-icon img {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  filter: invert(100%);
+}
+
+/* Contenido principal */
+.content {
+  display: flex;
+  justify-content: center;
+  margin-top: 120px;
+}
+
+.btn {
+  padding: 12px 25px;
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn:hover {
+  background: #555;
+}
+
+.btn.small {
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+.btn.danger {
+  background: #b83535;
+}
+
+.btn.danger:hover {
+  background: #d44747;
+}
+
+.btn.close {
+  background: #777;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background: rgba(0,0,0,0.35);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.modal-content input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+}
+
+.info p {
+  margin: 6px 0;
+}

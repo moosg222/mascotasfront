@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Mascotas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex flex-col">
+    <header
+      class="bg-blue-600 text-white flex justify-between items-center p-4 shadow-md"
+    >
+      <h1 class="text-xl font-bold">Gestión de Mascotas</h1>
+      <div id="containeravatar">
+        <a
+          href="/home"
+          class="cursor-pointer h-10 flex items-center justify-center text-xl font-bold"
+          >Home</a
+        >
+      </div>
+    </header>
+
+    <main class="flex justify-center p-6 ">
+      <div class="columns-1 md:columns-2 gap-6 md:w-2/3">
+        <!-- Crear -->
+        <section class="bg-white p-6 rounded-lg shadow mb-6 break-inside-avoid"  data-roles="admin,veterinario">
+          <h2
+            class="text-xl font-semibold cursor-pointer"
+            onclick="toggleSection('crearContent')"
+          >
+            Crear Mascota
+          </h2>
+          <div id="crearContent" class="mt-4 hidden">
+            <div class="grid md:grid-cols-2 gap-4">
+              <input id="nombre" class="input" placeholder="Nombre" />
+              <select id="tipo" class="input">
+                <option value="">Selecciona el tipo</option>
+                <option value="Perro">Perro</option>
+                <option value="Gato">Gato</option>
+                <option value="Otro">Otro</option>
+              </select>
+              <input id="raza" class="input" placeholder="Raza" />
+              <input
+                id="edad"
+                type="number"
+                class="input"
+                placeholder="Edad (0-30)"
+                min="0"
+                max="30"
+              />
+              <input
+                id="descripcion"
+                class="input md:col-span-2"
+                placeholder="Descripción"
+              />
+              <select id="adoptado" class="input">
+                <option value="false">¿Adoptado? (No)</option>
+                <option value="true">Sí</option>
+              </select>
+            </div>
+            <button onclick="crear()" class="btn-primary mt-4">Crear</button>
+          </div>
+        </section>
+
+        <!-- Buscar -->
+        <section class="bg-white p-6 rounded-lg shadow mb-6 break-inside-avoid" data-roles="admin,veterinario">
+          <h2
+            class="text-xl font-semibold cursor-pointer"
+            onclick="toggleSection('buscarContent')"
+          >
+            Buscar por ID
+          </h2>
+          <div id="buscarContent" class="mt-4 hidden overflow-x-auto">
+            <div class="flex gap-4">
+              <input
+                id="buscarId"
+                class="input w-full"
+                placeholder="ID de mascota"
+              />
+              <button onclick="buscarPorId()" class="btn-secondary">
+                Buscar
+              </button>
+            </div>
+            <pre
+              id="resultadoBusqueda"
+              class="mt-4 bg-gray-100 p-4 rounded"
+            ></pre>
+          </div>
+        </section>
+
+        <!-- Listar -->
+        <section class="bg-white p-6 rounded-lg shadow mb-6 break-inside-avoid" data-roles="admin,veterinario">
+          <h2
+            class="text-xl font-semibold cursor-pointer"
+            onclick="toggleSection('listarContent')"
+          >
+            Listado
+          </h2>
+          <div id="listarContent" class="mt-4 hidden">
+            <button onclick="listar()" class="btn-primary">Cargar Lista</button>
+            <pre
+              id="lista"
+              class="mt-4 bg-gray-100 p-4 rounded overflow-x-auto"
+            ></pre>
+          </div>
+        </section>
+
+        <!-- Actualizar -->
+        <section class="bg-white p-6 rounded-lg shadow mb-6 break-inside-avoid" data-roles="admin,veterinario">
+          <h2
+            class="text-xl font-semibold cursor-pointer"
+            onclick="toggleSection('actualizarContent')"
+          >
+            Actualizar Mascota
+          </h2>
+          <div id="actualizarContent" class="mt-4 hidden">
+            <div class="grid md:grid-cols-2 gap-4">
+              <input
+                id="updateId"
+                class="input"
+                placeholder="ID de la mascota"
+              />
+              <input
+                id="updateNombre"
+                class="input"
+                placeholder="Nuevo nombre"
+              />
+              <input
+                id="updateTipo"
+                class="input"
+                placeholder="Tipo (Perro, Gato, Otro)"
+              />
+              <input id="updateRaza" class="input" placeholder="Raza" />
+              <input
+                id="updateEdad"
+                type="number"
+                class="input"
+                placeholder="Edad (0-30)"
+              />
+              <input
+                id="updateDescripcion"
+                class="input md:col-span-2"
+                placeholder="Descripción"
+              />
+              <select id="updateAdoptado" class="input">
+                <option value="">¿Adoptado?</option>
+                <option value="true">Sí</option>
+                <option value="false">No</option>
+              </select>
+            </div>
+            <button onclick="actualizar()" class="btn-primary mt-4">
+              Actualizar
+            </button>
+          </div>
+        </section>
+
+        <!-- Eliminar -->
+        <section class="bg-white p-6 rounded-lg shadow mb-6 break-inside-avoid" data-roles="admin,veterinario">
+          <h2
+            class="text-xl font-semibold cursor-pointer"
+            onclick="toggleSection('eliminarContent')"
+          >
+            Eliminar
+          </h2>
+          <div id="eliminarContent" class="mt-4 hidden">
+            <div class="flex gap-4">
+              <input
+                id="deleteId"
+                class="input w-full"
+                placeholder="ID a eliminar"
+              />
+              <button onclick="eliminar()" class="btn-danger">Eliminar</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="js/mascotas.js"></script>
+  </body>
+</html>
