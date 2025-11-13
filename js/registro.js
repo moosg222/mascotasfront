@@ -1,4 +1,4 @@
-const API_USUARIOS = "mascotas-production-7bb1.up.railway.app/usuarios";
+const API_USUARIOS = "https://mascotas-production-7bb1.up.railway.app/usuarios";
 
 document.getElementById("formRegistro").addEventListener("submit", async (e) => {
   e.preventDefault();

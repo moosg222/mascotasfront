@@ -1,4 +1,4 @@
-const API = "mascotas-production-7bb1.up.railway.app";
+const API = "https://mascotas-production-7bb1.up.railway.app";
 
 // Elementos
 const togglePassword = document.getElementById("togglePassword");
