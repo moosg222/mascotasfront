@@ -22,7 +22,7 @@
     </header>
 
     <main class="flex justify-center p-6 ">
-      <div class="columns-1 md:columns-2 gap-6 md:w-2/3">
+      <div class="columns-1 md:columns-2 gap-6 md:w-2/3 w-full">
         <!-- Crear -->
         <section class="bg-white p-6 rounded-lg shadow mb-6 break-inside-avoid"  data-roles="admin,veterinario">
           <h2
@@ -97,12 +97,13 @@
           >
             Listado
           </h2>
-          <div id="listarContent" class="mt-4 hidden">
+          <div id="listarContent" class="mt-4 ">
             <button onclick="listar()" class="btn-primary">Cargar Lista</button>
             <pre
               id="lista"
-              class="mt-4 bg-gray-100 p-4 rounded overflow-x-auto"
-            ></pre>
+              class="mt-4 bg-gray-100 p-4 rounded w-full max-w-fit overflow-x-auto"
+            >
+          
           </div>
         </section>
 
