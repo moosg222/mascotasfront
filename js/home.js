@@ -329,3 +329,7 @@ async function cerrarSesion() {
 
   window.location.href = "/";
 }
+
+function irAlHome() {
+  window.location.href = "/CRUDmascotas";
+}

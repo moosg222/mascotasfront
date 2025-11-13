@@ -75,7 +75,6 @@ async function login() {
     }
 
     localStorage.setItem("token", data.token);
-    console.log(data);
 
     Swal.fire({
       icon: "success",
