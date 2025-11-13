@@ -331,5 +331,5 @@ async function cerrarSesion() {
 }
 
 function irAlHome() {
-  window.location.href = "/CRUDmascotas";
+  window.location.href = `https://mascotas-production-7bb1.up.railway.app/CRUDmascotas`;
 }
