@@ -1,4 +1,4 @@
-const API = `/mascotas`;
+const API = `mascotas-production-7bb1.up.railway.app/mascotas`;
 
 // =============================
 //  SWEETALERT HELPERS

@@ -1,4 +1,4 @@
-const API_USUARIOS = "/usuarios";
+const API_USUARIOS = "mascotas-production-7bb1.up.railway.app/usuarios";
 
 // =====================================================
 // Cargar perfil al iniciar
