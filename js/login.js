@@ -43,7 +43,7 @@ async function login() {
           if (result.isConfirmed) {
             // Llamar nuevo endpoint
             const resp = await fetch(
-              "https://padoptatumascota.netlify.app/usuarios/reenviarVerificacion",
+              "https://mascotas-production-7bb1.up.railway.app/usuarios/reenviarVerificacion",
               {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -163,7 +163,7 @@ async function solicitarRecuperacion() {
   });
 
   try {
-    const res = await fetch("https://padoptatumascota.netlify.app/usuarios/recuperar", {
+    const res = await fetch("https://mascotas-production-7bb1.up.railway.app/usuarios/recuperar", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email }),
