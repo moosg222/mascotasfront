@@ -43,7 +43,7 @@ async function login() {
           if (result.isConfirmed) {
             // Llamar nuevo endpoint
             const resp = await fetch(
-              "http://localhost:5000/usuarios/reenviarVerificacion",
+              "https://padoptatumascota.netlify.app/usuarios/reenviarVerificacion",
               {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -163,7 +163,7 @@ async function solicitarRecuperacion() {
   });
 
   try {
-    const res = await fetch("http://localhost:5000/usuarios/recuperar", {
+    const res = await fetch("https://padoptatumascota.netlify.app/usuarios/recuperar", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email }),
